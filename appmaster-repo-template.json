@@ -1,0 +1,48 @@
+{
+  "name": "AppMaster Store",
+  "identifier": "com.appmastr.store",
+  "iconURL": "https://example.com/icon.png",
+  "website": "https://t.me/AppMasterIOS",
+  "tintColor": "848ef9",
+  "description": "متجر AppMaster - تطبيقات مجانية ومميزة",
+  "apps": [
+    {
+      "name": "اسم التطبيق",
+      "bundleIdentifier": "com.example.app",
+      "developerName": "المطور",
+      "iconURL": "https://example.com/app-icon.png",
+      "localizedDescription": "وصف التطبيق هنا",
+      "subtitle": "وصف قصير",
+      "tintColor": "848ef9",
+      "category": "utilities",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "date": "2026-04-08T00:00:00Z",
+          "size": 5000000,
+          "downloadURL": "https://example.com/app.ipa",
+          "localizedDescription": "التغييرات في هذا الإصدار"
+        }
+      ],
+      "appPermissions": {},
+      "screenshotURLs": [
+        "https://example.com/screenshot1.png",
+        "https://example.com/screenshot2.png"
+      ],
+      "version": "1.0.0",
+      "versionDate": "2026-04-08T00:00:00Z",
+      "size": 5000000,
+      "downloadURL": "https://example.com/app.ipa"
+    }
+  ],
+  "news": [
+    {
+      "title": "مرحباً بك في AppMaster",
+      "identifier": "appmaster-welcome-1",
+      "caption": "أضف هذا المستودع لتحميل أحدث التطبيقات.",
+      "tintColor": "848ef9",
+      "date": "2026-04-08",
+      "notify": true
+    }
+  ]
+}
