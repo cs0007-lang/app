@@ -1,0 +1,19 @@
+{
+  "name": "AppMaster Store",
+  "identifier": "com.appmastr.store",
+  "iconURL": "https://raw.githubusercontent.com/CLARATION/Feather/main/Images/icon.png",
+  "website": "https://t.me/AppMasterIOS",
+  "tintColor": "848ef9",
+  "description": "متجر AppMaster الرسمي - تطبيقات مجانية ومميزة",
+  "apps": [],
+  "news": [
+    {
+      "title": "مرحباً بك في AppMaster",
+      "identifier": "appmaster-welcome",
+      "caption": "أضف مصادر التطبيقات للبدء في تحميل التطبيقات المفضلة لديك.",
+      "tintColor": "848ef9",
+      "date": "2026-04-08",
+      "notify": false
+    }
+  ]
+}
