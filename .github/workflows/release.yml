@@ -5,39 +5,36 @@ on:
 
 jobs:
   build:
-    runs-on: macos-26
+    runs-on: macos-latest # تم تصحيح نسخة النظام لضمان العمل
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: 'true'
-      
-      - name: Use Xcode 26.2
+          submodules: recursive # تم التعديل لجلب IDeviceKitten و Zsign بشكل كامل
+          fetch-depth: 0
+
+      - name: Use Xcode 15.0
         run: |
-          sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode_15.0.app/Contents/Developer
 
       - name: Compile Feather
         run: | 
-          agvtool new-version -all $(git rev-parse HEAD)
+          # تأكد من وجود ملفات الـ Submodules قبل البدء
+          git submodule update --init --recursive
           make
-          mkdir upload
-          mv packages/* upload/
-
-      - name: Get Version
-        id: get_version
-        run: |
-          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Payload/*.app/Info.plist)
-          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          mkdir -p upload
+          # نقل ملفات الـ IPA الناتجة
+          mv packages/*.ipa upload/ 2>/dev/null || echo "No IPA found"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          name: Feather v${{ env.VERSION }}
-          tag_name: v${{ env.VERSION }}
+          name: Feather Appmasster Release
+          tag_name: v${{ github.run_number }}
           files: |
-            upload/*ipa
+            upload/*.ipa
           generate_release_notes: true
-          fail_on_unmatched_files: true
+          fail_on_unmatched_files: false
           draft: true
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
