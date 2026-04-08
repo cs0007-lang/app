@@ -5,32 +5,32 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest # تم تصحيح نسخة النظام لضمان العمل
+    runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          submodules: recursive # تم التعديل لجلب IDeviceKitten و Zsign بشكل كامل
+          submodules: recursive
           fetch-depth: 0
 
       - name: Setup Xcode Version
         run: |
-          # هذا الأمر سيبحث عن أحدث نسخة Xcode مستقرة متوفرة على السيرفر ويستخدمها
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
       - name: Compile Feather
         run: | 
-          # تأكد من وجود ملفات الـ Submodules قبل البدء
+          # تحديث المكتبات الفرعية برمجياً داخل السيرفر لضمان وجودها
           git submodule update --init --recursive
+          # تنفيذ أمر البناء الخاص بمشروع Feather
           make
           mkdir -p upload
-          # نقل ملفات الـ IPA الناتجة
-          mv packages/*.ipa upload/ 2>/dev/null || echo "No IPA found"
+          # البحث عن ملف الـ IPA ونقله
+          find packages -name "*.ipa" -exec mv {} upload/ \; || echo "No IPA found"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          name: Feather Appmasster Release
+          name: Feather Appmasster Release v${{ github.run_number }}
           tag_name: v${{ github.run_number }}
           files: |
             upload/*.ipa
