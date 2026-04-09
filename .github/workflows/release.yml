@@ -26,16 +26,17 @@ jobs:
           cd OriginalFeather
           mkdir -p ../upload
           
-          # تثبيت iOS SDK
-          xcodebuild -downloadPlatform iOS
-          
           xcodebuild -scheme Feather \
             -configuration Release \
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
-            ARCHS=arm64
+            CODE_SIGNING_REQUIRED=NO \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=NO
+            
           find build -name "*.app" -path "*/Release-iphoneos/*" | head -1 | xargs -I{} xcrun PackageApplication "{}" -o "$(pwd)/../upload/Feather.ipa" || true
 
       - name: Create Release
