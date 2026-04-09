@@ -1,6 +1,6 @@
 [submodule "Zsign"]
 	path = Zsign
-	url = https://github.com/zhlynn/zsign.git
+	url = https://github.com/xtool-org/zsign.git
 	branch = package
 
 [submodule "IDeviceKitten"]
