@@ -18,13 +18,11 @@ jobs:
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
       - name: Compile Feather
-        run: | 
-          # تحديث المكتبات الفرعية برمجياً داخل السيرفر لضمان وجودها
+        run: |
+          git config --global lfs.enabled false
           git submodule update --init --recursive
-          # تنفيذ أمر البناء الخاص بمشروع Feather
           make
           mkdir -p upload
-          # البحث عن ملف الـ IPA ونقله
           find packages -name "*.ipa" -exec mv {} upload/ \; || echo "No IPA found"
 
       - name: Create Release
@@ -39,4 +37,3 @@ jobs:
           draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
