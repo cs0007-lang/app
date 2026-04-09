@@ -28,8 +28,8 @@ jobs:
       - name: Compile Feather
         run: |
           cd OriginalFeather
-          cat Makefile | head -30
-          gmake SCHEME="'Feather (Release)'"
+          cat Makefile
+          gmake -n 2>&1 | head -20 || true
           mkdir -p ../upload
           find packages -name "*.ipa" -exec mv {} ../upload/ \; || echo "No IPA found"
 
