@@ -15,6 +15,9 @@ jobs:
 
       - name: Clone Original Feather with submodules
         run: |
+          git config --global lfs.enabled false
+          git config --global filter.lfs.smudge "git-lfs smudge --skip -- %f"
+          git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
 
       - name: Setup Xcode Version
