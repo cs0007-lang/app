@@ -28,6 +28,7 @@ jobs:
           xcodebuild -scheme Feather \
             -configuration Release \
             -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             ARCHS=arm64
