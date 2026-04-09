@@ -17,9 +17,15 @@ jobs:
         run: |
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
+      - name: Disable LFS
+        run: |
+          git lfs uninstall
+          git config --global lfs.fetchexclude "*"
+          git config --global filter.lfs.smudge "git-lfs smudge --skip -- %f"
+          git config --global filter.lfs.process "git-lfs filter-process --skip"
+
       - name: Compile Feather
         run: |
-          git config --global lfs.enabled false
           git submodule update --init --recursive
           make
           mkdir -p upload
