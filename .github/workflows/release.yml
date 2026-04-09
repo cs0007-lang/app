@@ -28,7 +28,8 @@ jobs:
       - name: Compile Feather
         run: |
           cd OriginalFeather
-          make SCHEME="'Feather (Release)'" SDK="iphoneos"
+          brew install make
+          gmake package SCHEME="'Feather (Release)'"
           mkdir -p ../upload
           find packages -name "*.ipa" -exec mv {} ../upload/ \; || echo "No IPA found"
 
