@@ -25,6 +25,10 @@ jobs:
         run: |
           cd OriginalFeather
           mkdir -p ../upload
+          
+          # تثبيت iOS SDK
+          xcodebuild -downloadPlatform iOS
+          
           xcodebuild -scheme Feather \
             -configuration Release \
             -sdk iphoneos \
