@@ -2,6 +2,3 @@
 	path = Zsign
 	url = https://github.com/zhlynn/zsign.git
 	branch = package
-[submodule "IDeviceKitten"]
-	path = IDeviceKitten
-	url = https://github.com/khcrysalis/IDeviceKit
