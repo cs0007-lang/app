@@ -1,3 +1,51 @@
+name: Create New Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    permissions:
+      contents: write
+    steps:
+      - name: Setup Xcode Version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+          fetch-depth: 0
+
+      - name: Clone Original Feather with submodules
+        run: |
+          git config --global lfs.enabled false
+          git config --global filter.lfs.smudge "git-lfs smudge --skip -- %f"
+          git config --global filter.lfs.process "git-lfs filter-process --skip"
+          git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
+
+      - name: Setup Xcode Version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.2'
+
+      - name: Compile Feather
+        run: |
+          cd OriginalFeather
+          cat Makefile
+          gmake -n 2>&1 | head -20 || true
+          mkdir -p ../upload
+          find packages -name "*.ipa" -exec mv {} ../upload/ \; || echo "No IPA found"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: AppMaster Release v${{ github.run_number }}
+          tag_name: v${{ github.run_number }}
+          files: upload/*.ipa
+          generate_release_notes: true
+          fail_on_unmatched_files: false
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 name: Update Repository
 
 on:
