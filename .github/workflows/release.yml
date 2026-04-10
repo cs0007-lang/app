@@ -25,19 +25,29 @@ jobs:
         run: |
           cd OriginalFeather
           mkdir -p ../upload
-          
+
           xcodebuild -scheme Feather \
             -configuration Release \
             -sdk iphoneos \
-            -destination 'generic/platform=iOS' \
+            -destination 'generic:platform=iOS' \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             AD_HOC_CODE_SIGNING_ALLOWED=YES \
             ARCHS=arm64 \
             ONLY_ACTIVE_ARCH=NO
-            
-          find build -name "*.app" -path "*/Release-iphoneos/*" | head -1 | xargs -I{} xcrun PackageApplication "{}" -o "$(pwd)/../upload/Feather.ipa" || true
+
+          APP_PATH=$(find build -name "*.app" -path "*/Release-iphoneos/*" | head -1)
+          
+          if [ -n "$APP_PATH" ]; then
+            mkdir -p Payload
+            cp -r "$APP_PATH" Payload/
+            zip -r ../upload/Feather.ipa Payload/
+            rm -rf Payload
+          else
+            echo "No .app found!"
+            exit 1
+          fi
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
@@ -49,4 +59,4 @@ jobs:
           fail_on_unmatched_files: false
           draft: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}rets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
