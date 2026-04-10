@@ -14,24 +14,12 @@ jobs:
         with:
           xcode-version: '16.2'
 
-      - name: Debug Environment
-        run: |
-          xcodebuild -version
-          xcrun simctl list runtimes
-          ls /Applications/ | grep Xcode
-          xcodebuild -showsdks
-
       - name: Clone Original Feather with submodules
         run: |
           git config --global lfs.enabled false
           git config --global filter.lfs.smudge "git-lfs smudge --skip -- %f"
           git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
-
-      - name: Show Feather Destinations
-        run: |
-          cd OriginalFeather
-          xcodebuild -scheme Feather -showdestinations 2>&1 | head -50
 
       - name: Compile Feather
         run: |
@@ -40,14 +28,14 @@ jobs:
 
           xcodebuild -scheme Feather \
             -configuration Release \
-            -sdk iphoneos \
-            -destination 'generic/platform=iOS' \
+            -sdk iphoneos18.2 \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             AD_HOC_CODE_SIGNING_ALLOWED=YES \
             ARCHS=arm64 \
             ONLY_ACTIVE_ARCH=NO \
+            SWIFT_SERIALIZE_DEBUGGING_OPTIONS=NO \
             build
 
           APP_PATH=$(find build -name "*.app" -path "*/Release-iphoneos/*" | head -1)
