@@ -14,11 +14,12 @@ jobs:
         with:
           xcode-version: '16.2'
 
-      - name: Install iOS 18.2 SDK
+      - name: Install iOS 18.2 Runtime
         run: |
           sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
-          xcrun simctl list runtimes || true
-          sudo xcrun simctl runtime add "com.apple.CoreSimulator.SimRuntime.iOS-18-2" || true
+          xcodebuild -runFirstLaunch || true
+          xcrun simctl runtime add "iOS 18.2" || true
+          sleep 30
 
       - name: Clone Original Feather with submodules
         run: |
@@ -26,6 +27,11 @@ jobs:
           git config --global filter.lfs.smudge "git-lfs smudge --skip -- %f"
           git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
+
+      - name: Show available destinations
+        run: |
+          cd OriginalFeather
+          xcodebuild -scheme Feather -showdestinations 2>&1 || true
 
       - name: Compile Feather
         run: |
