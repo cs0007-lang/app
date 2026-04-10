@@ -29,14 +29,12 @@ jobs:
           xcodebuild -scheme Feather \
             -configuration Release \
             -sdk iphoneos \
-            -destination 'platform=iOS,name=Any iOS Device' \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             AD_HOC_CODE_SIGNING_ALLOWED=YES \
             ARCHS=arm64 \
             ONLY_ACTIVE_ARCH=NO \
-            SWIFT_SERIALIZE_DEBUGGING_OPTIONS=NO \
             build
 
           APP_PATH=$(find build -name "*.app" -path "*/Release-iphoneos/*" | head -1)
