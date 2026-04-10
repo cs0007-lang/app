@@ -26,6 +26,7 @@ jobs:
           cd OriginalFeather
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.2/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.0/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
+          find . -name "libidevice_ffi.a" -delete
 
       - name: Compile Feather
         run: |
