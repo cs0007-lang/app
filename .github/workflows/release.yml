@@ -21,6 +21,12 @@ jobs:
           git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
 
+      - name: Fix Deployment Target
+        run: |
+          cd OriginalFeather
+          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.2/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
+          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.0/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
+
       - name: Compile Feather
         run: |
           cd OriginalFeather
@@ -36,8 +42,7 @@ jobs:
             AD_HOC_CODE_SIGNING_ALLOWED=YES \
             ARCHS=arm64 \
             ONLY_ACTIVE_ARCH=NO \
-            IPHONEOS_DEPLOYMENT_TARGET=18.2 \
-            build 2>&1
+            build
 
           APP_PATH=$(find build -name "*.app" -path "*/Release-iphoneos/*" | head -1)
 
