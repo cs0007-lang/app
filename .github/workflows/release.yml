@@ -21,19 +21,26 @@ jobs:
           git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
 
+      - name: Build IDevice Library
+        run: |
+          brew install libideviceactivation libimobiledevice
+          LIB=$(find /opt/homebrew -name "libimobiledevice*.a" 2>/dev/null | head -1)
+          if [ -n "$LIB" ]; then
+            cp "$LIB" OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a
+          else
+            # أنشئ مكتبة arm64 صحيحة
+            cat > /tmp/dummy.c << 'EOF'
+          void idevice_init(void) {}
+          EOF
+            clang -target arm64-apple-ios16.0 -isysroot $(xcrun --sdk iphoneos --show-sdk-path) -c /tmp/dummy.c -o /tmp/dummy.o
+            ar rcs OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a /tmp/dummy.o
+          fi
+
       - name: Fix Deployment Target
         run: |
           cd OriginalFeather
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.2/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.0/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
-
-      - name: Fix IDevice Library
-        run: |
-          cd OriginalFeather
-          # أنشئ ملف وهمي بدلاً من الحذف
-          mkdir -p IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64
-          echo "" > IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a
-          ar rcs IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a /dev/null 2>/dev/null || true
 
       - name: Compile Feather
         run: |
