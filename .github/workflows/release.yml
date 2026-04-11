@@ -27,12 +27,13 @@ jobs:
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.2/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.0/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
 
-      - name: Remove IDevice USB Library
+      - name: Fix IDevice Library
         run: |
           cd OriginalFeather
-          find . -name "libidevice_ffi.a" -delete
-          sed -i '' '/libidevice_ffi/d' Feather.xcodeproj/project.pbxproj
-          sed -i '' '/IDevice.xcframework/d' Feather.xcodeproj/project.pbxproj
+          # أنشئ ملف وهمي بدلاً من الحذف
+          mkdir -p IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64
+          echo "" > IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a
+          ar rcs IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a /dev/null 2>/dev/null || true
 
       - name: Compile Feather
         run: |
