@@ -26,27 +26,51 @@ jobs:
           TARGET_LIB="OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a"
           rm -f "$TARGET_LIB"
           
-          # استخرج أسماء الدوال المطلوبة من الكود
-          SYMBOLS=$(grep -r "func\|extern\|_[a-z]" OriginalFeather/IDeviceKitten/Sources --include="*.swift" -h | grep -o '"[a-z_]*"' | tr -d '"' | sort -u)
-          
-          # أنشئ ملف C يحتوي على كل الدوال
-          echo "void _placeholder(void) {}" > /tmp/dummy.c
-          for sym in $SYMBOLS; do
-            echo "void ${sym}(void) {}" >> /tmp/dummy.c
-          done
-          
-          # أضف الدوال التي رأيناها في اللوق
-          cat >> /tmp/dummy.c << 'EOF'
-          void syslog_relay_next(void) {}
-          void tunnel_create_rppairing(void) {}
+          cat > /tmp/dummy.c << 'EOF'
           void idevice_init(void) {}
           void idevice_free(void) {}
+          void syslog_relay_next(void) {}
+          void syslog_relay_client_free(void) {}
+          void syslog_relay_connect_rsd(void) {}
+          void syslog_relay_connect_tcp(void) {}
+          void tunnel_create_rppairing(void) {}
+          void installation_proxy_get_app_icon(void) {}
+          void idevice_connection_send(void) {}
+          void idevice_connection_receive(void) {}
+          void idevice_connection_disconnect(void) {}
+          void idevice_get_device_list(void) {}
+          void idevice_device_list_free(void) {}
+          void idevice_new(void) {}
+          void idevice_connect(void) {}
+          void idevice_disconnect(void) {}
+          void lockdownd_client_new_with_handshake(void) {}
+          void lockdownd_client_free(void) {}
+          void lockdownd_start_service(void) {}
+          void lockdownd_get_value(void) {}
+          void instproxy_client_new(void) {}
+          void instproxy_client_free(void) {}
+          void instproxy_install(void) {}
+          void instproxy_browse(void) {}
+          void afc_client_new(void) {}
+          void afc_client_free(void) {}
+          void afc_make_directory(void) {}
+          void afc_file_open(void) {}
+          void afc_file_close(void) {}
+          void afc_file_write(void) {}
+          void afc_remove_path(void) {}
+          void heartbeat_client_start_service(void) {}
+          void heartbeat_client_free(void) {}
+          void heartbeat_send(void) {}
+          void heartbeat_receive(void) {}
+          void rsd_client_connect(void) {}
+          void rsd_client_disconnect(void) {}
           EOF
           
           clang -target arm64-apple-ios16.0 \
             -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
             -c /tmp/dummy.c -o /tmp/dummy.o
           ar rcs "$TARGET_LIB" /tmp/dummy.o
+          echo "Done: $(file $TARGET_LIB)"
 
       - name: Fix Deployment Target
         run: |
