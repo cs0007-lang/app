@@ -14,19 +14,23 @@ jobs:
         with:
           xcode-version: '26.0'
 
+      - name: Install Git LFS
+        run: |
+          brew install git-lfs
+          git lfs install
+
       - name: Clone Original Feather with submodules
         run: |
-          git config --global lfs.enabled false
-          git config --global filter.lfs.smudge "git-lfs smudge --skip -- %f"
-          git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
+          cd OriginalFeather
+          git lfs pull
+          git submodule foreach git lfs pull
 
       - name: Fix Deployment Target
         run: |
           cd OriginalFeather
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.2/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.0/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
-          find . -name "libidevice_ffi.a" -delete
 
       - name: Compile Feather
         run: |
