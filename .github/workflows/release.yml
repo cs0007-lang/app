@@ -21,6 +21,11 @@ jobs:
           git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
 
+      - name: Show IDevice Sources
+        run: |
+         find OriginalFeather/IDeviceKitten/Sources -type f | head -20
+         grep -r "@_silgen_name\|func.*Unsafe\|func.*Pointer" OriginalFeather/IDeviceKitten/Sources --include="*.swift" | head -50
+
       - name: Build IDevice Library
         run: |
           TARGET_LIB="OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a"
