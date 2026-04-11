@@ -24,11 +24,19 @@ jobs:
       - name: Download IDevice Framework
         run: |
           cd OriginalFeather/IDeviceKitten/Frameworks
-          rm -rf IDevice.xcframework
-          # تحميل من أحدث release
-          curl -L "https://github.com/khcrysalis/IDeviceKit/releases/latest/download/IDevice.xcframework.zip" -o IDevice.zip
-          unzip IDevice.zip
-          rm IDevice.zip
+          ls -la
+          # تحقق من محتوى الـ xcframework الموجود
+          find IDevice.xcframework -type f | head -20
+          # حاول تحميل من GitHub API
+          LATEST=$(curl -s https://api.github.com/repos/khcrysalis/IDeviceKit/releases/latest | grep "browser_download_url" | grep ".zip" | cut -d '"' -f 4)
+          echo "Download URL: $LATEST"
+          if [ -n "$LATEST" ]; then
+            curl -L "$LATEST" -o IDevice.zip
+            unzip IDevice.zip
+            rm IDevice.zip
+          else
+            echo "No release found, using existing files"
+          fi
 
       - name: Fix Deployment Target
         run: |
