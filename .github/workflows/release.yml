@@ -33,7 +33,6 @@ jobs:
           void syslog_relay_connect_tcp(void* a, void** b) {}
           void syslog_relay_next(void* a, void** b) {}
           void syslog_relay_client_free(void* a) {}
-          void syslog_relay_next_free(void* a) {}
           void os_trace_relay_connect(void* a, void** b) {}
           void os_trace_relay_start_trace(void* a, void** b, void* c) {}
           void os_trace_relay_next(void* a, void** b) {}
@@ -61,6 +60,8 @@ jobs:
           void lockdownd_get_value(void* a, void* b, void* c, void** d) {}
           void rsd_client_connect(void* a, int b, void** c) {}
           void rsd_client_disconnect(void* a) {}
+          void rsd_handshake_free(void* a) {}
+          void getPairingRsd(void* a, void** b) {}
           EOF
           
           clang -target arm64-apple-ios16.0 \
