@@ -21,28 +21,47 @@ jobs:
           git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
 
-      - name: Show IDevice Sources
-        run: |
-          cat OriginalFeather/IDeviceKitten/Sources/IDeviceSwift/Heartbeat/Heartbeat.swift
-          cat OriginalFeather/IDeviceKitten/Sources/IDeviceSwift/Trace/SystemLogManager.swift
-
       - name: Build IDevice Library
         run: |
           TARGET_LIB="OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a"
           rm -f "$TARGET_LIB"
           
-          # استخرج كل الدوال من ملفات header في IDeviceKitten
-          echo "" > /tmp/dummy.c
-          grep -roh '"[a-z_][a-z_0-9]*"' \
-            OriginalFeather/IDeviceKitten/Sources \
-            --include="*.swift" | \
-            tr -d '"' | sort -u | \
-            while read func; do
-              echo "void ${func}(void) {}"
-            done >> /tmp/dummy.c
-          
-          echo "Generated functions:"
-          cat /tmp/dummy.c
+          cat > /tmp/dummy.c << 'EOF'
+          void idevice_init_logger(int level, int a, void* b) {}
+          void idevice_string_free(void* s) {}
+          void syslog_relay_connect_rsd(void* a, void* b, void** c) {}
+          void syslog_relay_connect_tcp(void* a, void** b) {}
+          void syslog_relay_next(void* a, void** b) {}
+          void syslog_relay_client_free(void* a) {}
+          void syslog_relay_next_free(void* a) {}
+          void os_trace_relay_connect(void* a, void** b) {}
+          void os_trace_relay_start_trace(void* a, void** b, void* c) {}
+          void os_trace_relay_next(void* a, void** b) {}
+          void os_trace_relay_free_log(void* a) {}
+          void os_trace_relay_receiver_free(void* a) {}
+          void tunnel_create_rppairing(void* a, void* b, void** c) {}
+          void springboard_services_connect(void* a, void** b) {}
+          void springboard_services_free(void* a) {}
+          void springboard_services_get_icon(void* a, void* b, void** c, void** d) {}
+          void instproxy_browse(void* a, void* b, void** c) {}
+          void instproxy_install(void* a, void* b, void* c, void* d, void* e) {}
+          void instproxy_client_free(void* a) {}
+          void heartbeat_client_start_service(void* a, void* b, void** c) {}
+          void heartbeat_client_free(void* a) {}
+          void heartbeat_send(void* a, void* b) {}
+          void heartbeat_receive(void* a, void* b, void* c) {}
+          void idevice_init(void) {}
+          void idevice_free(void* a) {}
+          void idevice_new(void* a, void** b) {}
+          void idevice_connect(void* a, int b, void** c) {}
+          void idevice_disconnect(void* a) {}
+          void lockdownd_client_new_with_handshake(void* a, void** b, void* c) {}
+          void lockdownd_client_free(void* a) {}
+          void lockdownd_start_service(void* a, void* b, void** c) {}
+          void lockdownd_get_value(void* a, void* b, void* c, void** d) {}
+          void rsd_client_connect(void* a, int b, void** c) {}
+          void rsd_client_disconnect(void* a) {}
+          EOF
           
           clang -target arm64-apple-ios16.0 \
             -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
