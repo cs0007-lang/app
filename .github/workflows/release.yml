@@ -21,28 +21,18 @@ jobs:
           git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
 
-      - name: Download IDevice Framework
-        run: |
-          cd OriginalFeather/IDeviceKitten/Frameworks
-          ls -la
-          # تحقق من محتوى الـ xcframework الموجود
-          find IDevice.xcframework -type f | head -20
-          # حاول تحميل من GitHub API
-          LATEST=$(curl -s https://api.github.com/repos/khcrysalis/IDeviceKit/releases/latest | grep "browser_download_url" | grep ".zip" | cut -d '"' -f 4)
-          echo "Download URL: $LATEST"
-          if [ -n "$LATEST" ]; then
-            curl -L "$LATEST" -o IDevice.zip
-            unzip IDevice.zip
-            rm IDevice.zip
-          else
-            echo "No release found, using existing files"
-          fi
-
       - name: Fix Deployment Target
         run: |
           cd OriginalFeather
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.2/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.0/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
+
+      - name: Remove IDevice USB Library
+        run: |
+          cd OriginalFeather
+          find . -name "libidevice_ffi.a" -delete
+          sed -i '' '/libidevice_ffi/d' Feather.xcodeproj/project.pbxproj
+          sed -i '' '/IDevice.xcframework/d' Feather.xcodeproj/project.pbxproj
 
       - name: Compile Feather
         run: |
