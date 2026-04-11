@@ -14,17 +14,21 @@ jobs:
         with:
           xcode-version: '26.0'
 
-      - name: Install Git LFS
-        run: |
-          brew install git-lfs
-          git lfs install
-
       - name: Clone Original Feather with submodules
         run: |
+          git config --global lfs.enabled false
+          git config --global filter.lfs.smudge "git-lfs smudge --skip -- %f"
+          git config --global filter.lfs.process "git-lfs filter-process --skip"
           git clone --recurse-submodules https://github.com/khcrysalis/Feather.git OriginalFeather
-          cd OriginalFeather
-          git lfs pull
-          git submodule foreach git lfs pull
+
+      - name: Download IDevice Framework
+        run: |
+          cd OriginalFeather/IDeviceKitten/Frameworks
+          rm -rf IDevice.xcframework
+          # تحميل من أحدث release
+          curl -L "https://github.com/khcrysalis/IDeviceKit/releases/latest/download/IDevice.xcframework.zip" -o IDevice.zip
+          unzip IDevice.zip
+          rm IDevice.zip
 
       - name: Fix Deployment Target
         run: |
