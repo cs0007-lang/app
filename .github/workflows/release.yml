@@ -25,15 +25,28 @@ jobs:
         run: |
           TARGET_LIB="OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a"
           rm -f "$TARGET_LIB"
-          cat > /tmp/dummy.c << 'EOF'
+          
+          # استخرج أسماء الدوال المطلوبة من الكود
+          SYMBOLS=$(grep -r "func\|extern\|_[a-z]" OriginalFeather/IDeviceKitten/Sources --include="*.swift" -h | grep -o '"[a-z_]*"' | tr -d '"' | sort -u)
+          
+          # أنشئ ملف C يحتوي على كل الدوال
+          echo "void _placeholder(void) {}" > /tmp/dummy.c
+          for sym in $SYMBOLS; do
+            echo "void ${sym}(void) {}" >> /tmp/dummy.c
+          done
+          
+          # أضف الدوال التي رأيناها في اللوق
+          cat >> /tmp/dummy.c << 'EOF'
+          void syslog_relay_next(void) {}
+          void tunnel_create_rppairing(void) {}
           void idevice_init(void) {}
           void idevice_free(void) {}
           EOF
+          
           clang -target arm64-apple-ios16.0 \
             -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
             -c /tmp/dummy.c -o /tmp/dummy.o
           ar rcs "$TARGET_LIB" /tmp/dummy.o
-          echo "Library created: $(file $TARGET_LIB)"
 
       - name: Fix Deployment Target
         run: |
