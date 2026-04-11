@@ -26,29 +26,22 @@ jobs:
           TARGET_LIB="OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a"
           rm -f "$TARGET_LIB"
           
-          # استخرج كل الدوال المطلوبة من ملفات Swift تلقائياً
-          FUNCS=$(grep -roh '[a-z_]*_[a-z_]*' OriginalFeather/IDeviceKitten/Sources --include="*.swift" | sort -u)
+          # استخرج كل الدوال من ملفات header في IDeviceKitten
+          echo "" > /tmp/dummy.c
+          grep -roh '"[a-z_][a-z_0-9]*"' \
+            OriginalFeather/IDeviceKitten/Sources \
+            --include="*.swift" | \
+            tr -d '"' | sort -u | \
+            while read func; do
+              echo "void ${func}(void) {}"
+            done >> /tmp/dummy.c
           
-          echo "void _placeholder(void) {}" > /tmp/dummy.c
-          while IFS= read -r func; do
-            [ -n "$func" ] && echo "void ${func}(void) {}" >> /tmp/dummy.c
-          done <<< "$FUNCS"
-          
-          # أضف الدوال الواضحة من اللوق
-          cat >> /tmp/dummy.c << 'EOF'
-          void springboard_services_connect(void) {}
-          void springboard_services_free(void) {}
-          void springboard_services_get_icon(void) {}
-          void syslog_relay_next(void) {}
-          void syslog_relay_client_free(void) {}
-          void syslog_relay_connect_rsd(void) {}
-          void syslog_relay_connect_tcp(void) {}
-          void tunnel_create_rppairing(void) {}
-          EOF
+          echo "Generated functions:"
+          cat /tmp/dummy.c
           
           clang -target arm64-apple-ios16.0 \
             -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
-            -c /tmp/dummy.c -o /tmp/dummy.o 2>&1 || true
+            -c /tmp/dummy.c -o /tmp/dummy.o
           ar rcs "$TARGET_LIB" /tmp/dummy.o
           echo "Done: $(file $TARGET_LIB)"
 
