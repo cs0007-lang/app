@@ -23,6 +23,8 @@ jobs:
 
       - name: Build IDevice Library
         run: |
+          TARGET_LIB="OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a"
+          rm -f "$TARGET_LIB"
           cat > /tmp/dummy.c << 'EOF'
           void idevice_init(void) {}
           void idevice_free(void) {}
@@ -30,7 +32,8 @@ jobs:
           clang -target arm64-apple-ios16.0 \
             -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
             -c /tmp/dummy.c -o /tmp/dummy.o
-          ar rcs OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a /tmp/dummy.o
+          ar rcs "$TARGET_LIB" /tmp/dummy.o
+          echo "Library created: $(file $TARGET_LIB)"
 
       - name: Fix Deployment Target
         run: |
