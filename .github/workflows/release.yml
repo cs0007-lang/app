@@ -65,6 +65,7 @@ jobs:
           void plist_to_xml(void* a, void** b, void* c) {}
           void rp_pairing_file_free(void* a) {}
           void rp_pairing_file_read(void* a, void** b) {}
+          void installation_proxy_uninstall(void* a, void* b, void* c, void* d) {}
           EOF
           
           clang -target arm64-apple-ios16.0 \
