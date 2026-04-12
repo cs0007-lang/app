@@ -62,6 +62,9 @@ jobs:
           void rsd_client_disconnect(void* a) {}
           void rsd_handshake_free(void* a) {}
           void getPairingRsd(void* a, void** b) {}
+          void plist_to_xml(void* a, void** b, void* c) {}
+          void rp_pairing_file_free(void* a) {}
+          void rp_pairing_file_read(void* a, void** b) {}
           EOF
           
           clang -target arm64-apple-ios16.0 \
