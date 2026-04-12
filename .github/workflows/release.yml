@@ -29,6 +29,41 @@ jobs:
           cat > /tmp/dummy.c << 'EOF'
           void idevice_init_logger(int level, int a, void* b) {}
           void idevice_string_free(void* s) {}
+          void idevice_init(void) {}
+          void idevice_free(void* a) {}
+          void idevice_new(void* a, void** b) {}
+          void idevice_connect(void* a, int b, void** c) {}
+          void idevice_disconnect(void* a) {}
+          void idevice_pairing_file_read(void* a, void** b) {}
+          void idevice_tcp_provider_new(void* a, int b, void* c, void** d) {}
+          void adapter_free(void* a) {}
+          void afc_client_connect(void* a, void** b) {}
+          void afc_client_connect_rsd(void* a, void* b, void** c) {}
+          void afc_client_free(void* a) {}
+          void afc_file_close(void* a, int b) {}
+          void afc_file_open(void* a, void* b, int c, void** d) {}
+          void afc_file_write(void* a, int b, void* c, int d, void** e) {}
+          void afc_make_directory(void* a, void* b) {}
+          void heartbeat_connect(void* a, void* b, void** c) {}
+          void heartbeat_get_marco(void* a, void** b) {}
+          void heartbeat_send_polo(void* a, void* b) {}
+          void heartbeat_client_start_service(void* a, void* b, void** c) {}
+          void heartbeat_client_free(void* a) {}
+          void heartbeat_send(void* a, void* b) {}
+          void heartbeat_receive(void* a, void* b, void* c) {}
+          void installation_proxy_client_free(void* a) {}
+          void installation_proxy_connect(void* a, void** b) {}
+          void installation_proxy_connect_rsd(void* a, void* b, void** c) {}
+          void installation_proxy_get_apps(void* a, void* b, void* c, void** d) {}
+          void installation_proxy_install_with_callback(void* a, void* b, void* c, void* d, void* e) {}
+          void installation_proxy_uninstall(void* a, void* b, void* c, void* d) {}
+          void instproxy_browse(void* a, void* b, void** c) {}
+          void instproxy_install(void* a, void* b, void* c, void* d, void* e) {}
+          void instproxy_client_free(void* a) {}
+          void lockdownd_client_new_with_handshake(void* a, void** b, void* c) {}
+          void lockdownd_client_free(void* a) {}
+          void lockdownd_start_service(void* a, void* b, void** c) {}
+          void lockdownd_get_value(void* a, void* b, void* c, void** d) {}
           void syslog_relay_connect_rsd(void* a, void* b, void** c) {}
           void syslog_relay_connect_tcp(void* a, void** b) {}
           void syslog_relay_next(void* a, void** b) {}
@@ -42,30 +77,13 @@ jobs:
           void springboard_services_connect(void* a, void** b) {}
           void springboard_services_free(void* a) {}
           void springboard_services_get_icon(void* a, void* b, void** c, void** d) {}
-          void instproxy_browse(void* a, void* b, void** c) {}
-          void instproxy_install(void* a, void* b, void* c, void* d, void* e) {}
-          void instproxy_client_free(void* a) {}
-          void heartbeat_client_start_service(void* a, void* b, void** c) {}
-          void heartbeat_client_free(void* a) {}
-          void heartbeat_send(void* a, void* b) {}
-          void heartbeat_receive(void* a, void* b, void* c) {}
-          void idevice_init(void) {}
-          void idevice_free(void* a) {}
-          void idevice_new(void* a, void** b) {}
-          void idevice_connect(void* a, int b, void** c) {}
-          void idevice_disconnect(void* a) {}
-          void lockdownd_client_new_with_handshake(void* a, void** b, void* c) {}
-          void lockdownd_client_free(void* a) {}
-          void lockdownd_start_service(void* a, void* b, void** c) {}
-          void lockdownd_get_value(void* a, void* b, void* c, void** d) {}
+          void plist_to_xml(void* a, void** b, void* c) {}
+          void rp_pairing_file_free(void* a) {}
+          void rp_pairing_file_read(void* a, void** b) {}
           void rsd_client_connect(void* a, int b, void** c) {}
           void rsd_client_disconnect(void* a) {}
           void rsd_handshake_free(void* a) {}
           void getPairingRsd(void* a, void** b) {}
-          void plist_to_xml(void* a, void** b, void* c) {}
-          void rp_pairing_file_free(void* a) {}
-          void rp_pairing_file_read(void* a, void** b) {}
-          void installation_proxy_uninstall(void* a, void* b, void* c, void* d) {}
           EOF
           
           clang -target arm64-apple-ios16.0 \
