@@ -25,7 +25,6 @@ jobs:
         run: |
           TARGET_LIB="OriginalFeather/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a"
           rm -f "$TARGET_LIB"
-          
           cat > /tmp/dummy.c << 'EOF'
           void idevice_init_logger(int level, int a, void* b) {}
           void idevice_string_free(void* s) {}
@@ -85,12 +84,10 @@ jobs:
           void rsd_handshake_free(void* a) {}
           void getPairingRsd(void* a, void** b) {}
           EOF
-          
           clang -target arm64-apple-ios16.0 \
             -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
             -c /tmp/dummy.c -o /tmp/dummy.o
           ar rcs "$TARGET_LIB" /tmp/dummy.o
-          echo "Done: $(file $TARGET_LIB)"
 
       - name: Fix Deployment Target
         run: |
@@ -98,26 +95,18 @@ jobs:
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.2/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.0/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
 
-          - name: Customize App
-         run: |
+      - name: Customize App
+        run: |
           cd OriginalFeather
-          
-          # تغيير الاسم والمعرف
           sed -i '' 's/PRODUCT_BUNDLE_IDENTIFIER = .*Feather.*/PRODUCT_BUNDLE_IDENTIFIER = com.appmastr.app/g' Feather.xcodeproj/project.pbxproj
           sed -i '' 's/PRODUCT_NAME = Feather/PRODUCT_NAME = AppMaster/g' Feather.xcodeproj/project.pbxproj
           /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName AppMaster" Feather/Info.plist
           /usr/libexec/PlistBuddy -c "Set :CFBundleName AppMaster" Feather/Info.plist
           /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.appmastr.app" Feather/Info.plist
-          
-          # تحميل الأيقونة وتحويلها لأحجام مختلفة
-          curl -L "https://raw.githubusercontent.com/cs0007-lang/app/main/icon.png" -o /tmp/icon.png 2>/dev/null || true
-          
-          # تغيير الأيقونة بالأحجام المطلوبة
+          curl -L "https://raw.githubusercontent.com/cs0007-lang/app/main/icon.png" -o /tmp/icon.png
           for size in 20 29 40 58 60 76 80 87 120 152 167 180 1024; do
             sips -z $size $size /tmp/icon.png --out /tmp/icon_${size}.png 2>/dev/null || true
           done
-          
-          # استبدال الأيقونات
           find . -name "AppIcon*.png" | while read f; do
             size=$(echo $f | grep -o '[0-9]*x[0-9]*' | head -1 | cut -dx -f1)
             [ -f "/tmp/icon_${size}.png" ] && cp "/tmp/icon_${size}.png" "$f"
@@ -146,7 +135,7 @@ jobs:
           if [ -n "$APP_PATH" ]; then
             mkdir -p Payload
             cp -r "$APP_PATH" Payload/
-            zip -r ../upload/Feather.ipa Payload/
+            zip -r ../upload/AppMaster.ipa Payload/
             rm -rf Payload
           else
             echo "No .app found!"
