@@ -98,6 +98,31 @@ jobs:
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.2/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18.0/IPHONEOS_DEPLOYMENT_TARGET = 16.0/g' Feather.xcodeproj/project.pbxproj
 
+          - name: Customize App
+         run: |
+          cd OriginalFeather
+          
+          # تغيير الاسم والمعرف
+          sed -i '' 's/PRODUCT_BUNDLE_IDENTIFIER = .*Feather.*/PRODUCT_BUNDLE_IDENTIFIER = com.appmastr.app/g' Feather.xcodeproj/project.pbxproj
+          sed -i '' 's/PRODUCT_NAME = Feather/PRODUCT_NAME = AppMaster/g' Feather.xcodeproj/project.pbxproj
+          /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName AppMaster" Feather/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleName AppMaster" Feather/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.appmastr.app" Feather/Info.plist
+          
+          # تحميل الأيقونة وتحويلها لأحجام مختلفة
+          curl -L "https://raw.githubusercontent.com/cs0007-lang/app/main/icon.png" -o /tmp/icon.png 2>/dev/null || true
+          
+          # تغيير الأيقونة بالأحجام المطلوبة
+          for size in 20 29 40 58 60 76 80 87 120 152 167 180 1024; do
+            sips -z $size $size /tmp/icon.png --out /tmp/icon_${size}.png 2>/dev/null || true
+          done
+          
+          # استبدال الأيقونات
+          find . -name "AppIcon*.png" | while read f; do
+            size=$(echo $f | grep -o '[0-9]*x[0-9]*' | head -1 | cut -dx -f1)
+            [ -f "/tmp/icon_${size}.png" ] && cp "/tmp/icon_${size}.png" "$f"
+          done
+
       - name: Compile Feather
         run: |
           cd OriginalFeather
