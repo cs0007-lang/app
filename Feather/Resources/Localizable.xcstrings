@@ -381,6 +381,12 @@
             "state": "translated",
             "value": "隐藏了%lld个系统dylibs"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld required system dylibs not shown."
+          }
         }
       }
     },
@@ -500,6 +506,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld个软件源"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Sources"
           }
         }
       }
@@ -784,12 +796,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Thêm và quản lý chứng chỉ được sử dụng để ký ứng dụng."
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "أضف وأدر الشهادات المستخدمة لتوقيع التطبيقات."
           }
         }
       }
@@ -2336,12 +2342,6 @@
             "state": "translated",
             "value": "Chứng chỉ được cập nhật thành công."
           }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "تم تحديث الشهادات بنجاح."
-          }
         }
       }
     },
@@ -3070,12 +3070,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Màu chủ đề tùy chỉnh"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "لون المظهر المخصص"
           }
         }
       }
@@ -4172,6 +4166,12 @@
             "state": "translated",
             "value": "Dylibs"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dylibs"
+          }
         }
       }
     },
@@ -4365,7 +4365,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "هل تستمتع بـ AppMaster؟"
+            "value": "هل تستمتع بـ %@؟"
           }
         }
       }
@@ -5323,7 +5323,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "مميز"
+            "value": "المميز"
           }
         }
       }
@@ -6508,6 +6508,12 @@
             "state": "translated",
             "value": "心跳检测"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heartbeat"
+          }
         }
       }
     },
@@ -6876,6 +6882,12 @@
           }
         },
         "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "idevice"
+          }
+        },
+        "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "idevice"
@@ -8093,6 +8105,12 @@
             "state": "translated",
             "value": "iTunes文件共享"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iTunes File Sharing"
+          }
         }
       }
     },
@@ -8179,7 +8197,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تعرف على كيفية إعداد مستودع..."
+            "value": "تعرف على المزيد حول كيفية إعداد مستودع…"
           }
         }
       }
@@ -10723,6 +10741,12 @@
             "state": "translated",
             "value": "PPQ检查"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PPQCheck"
+          }
         }
       }
     },
@@ -10814,6 +10838,12 @@
           }
         },
         "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Motion"
+          }
+        },
+        "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "Pro Motion"
@@ -11384,7 +11414,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أزل التنبيهات المزعجة بعد الحصول على وصول تجريبي!"
+            "value": "إزالة التنبيهات المزعجة مثل هذه بعد الحصول على وصول تجريبي!"
           }
         }
       }
@@ -15309,7 +15339,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تتطلب هذه التغييرات إعادة تشغيل التطبيق"
+            "value": "هذه التغييرات تتطلب إعادة تشغيل التطبيق"
           }
         }
       }
@@ -15982,6 +16012,12 @@
             "state": "translated",
             "value": "URL"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL"
+          }
         }
       }
     },
@@ -16549,17 +16585,404 @@
         }
       }
     },
-    "Home": {
+    "%@ has been downloaded successfully": {
+      "extractionState": "manual",
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "الرئيسية"
+            "value": "تم تنزيل %@ بنجاح"
+          }
+        }
+      }
+    },
+    "%@ has been signed successfully on the server": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم توقيع %@ بنجاح على السيرفر"
+          }
+        }
+      }
+    },
+    "Access Denied": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الوصول مرفوض"
+          }
+        }
+      }
+    },
+    "Account Status": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حالة الحساب"
+          }
+        }
+      }
+    },
+    "Active": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نشط"
+          }
+        }
+      }
+    },
+    "Addition Date": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تاريخ الإضافة"
+          }
+        }
+      }
+    },
+    "All app notifications": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كل إشعارات التطبيقات"
+          }
+        }
+      }
+    },
+    "App Name": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسم التطبيق"
+          }
+        }
+      }
+    },
+    "App not found.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التطبيق غير موجود."
+          }
+        }
+      }
+    },
+    "App notifications": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إشعارات التطبيقات"
+          }
+        }
+      }
+    },
+    "App notifications off": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إيقاف إشعارات التطبيقات"
+          }
+        }
+      }
+    },
+    "Apps": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تطبيقات"
+          }
+        }
+      }
+    },
+    "Apps you mark as favorite will appear here.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التطبيقات التي تضاف للمفضلة ستظهر هنا."
+          }
+        }
+      }
+    },
+    "Ascending": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تصاعدي"
+          }
+        }
+      }
+    },
+    "Changing the language requires restarting the app to take effect.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تغيير اللغة يتطلب إعادة تشغيل التطبيق لتطبيق التغيير."
+          }
+        }
+      }
+    },
+    "Check Again": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تحقق مرة أخرى"
+          }
+        }
+      }
+    },
+    "Clear all favorites": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حذف كل المفضلة"
+          }
+        }
+      }
+    },
+    "Code": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الكود"
+          }
+        }
+      }
+    },
+    "Contact support to renew subscription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تواصل مع الدعم لتجديد الاشتراك"
+          }
+        }
+      }
+    },
+    "Copy Number": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رقم النسخة"
+          }
+        }
+      }
+    },
+    "Creator": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المنشئ"
+          }
+        }
+      }
+    },
+    "Custom": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مخصص"
+          }
+        }
+      }
+    },
+    "Custom Copy Number": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رقم نسخة مخصص"
+          }
+        }
+      }
+    },
+    "Customize": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تخصيص"
+          }
+        }
+      }
+    },
+    "Delete selected": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حذف المحدد"
+          }
+        }
+      }
+    },
+    "Descending": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تنازلي"
+          }
+        }
+      }
+    },
+    "Device": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الجهاز"
+          }
+        }
+      }
+    },
+    "Done": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم"
+          }
+        }
+      }
+    },
+    "Download Complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اكتمل التنزيل"
+          }
+        }
+      }
+    },
+    "Edit App Info": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعديل معلومات التطبيق"
+          }
+        }
+      }
+    },
+    "Enter Copy Number": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أدخل رقم النسخة"
+          }
+        }
+      }
+    },
+    "Enter a custom copy number to append to the bundle ID": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أدخل رقم نسخة مخصص لإضافته إلى Bundle ID"
+          }
+        }
+      }
+    },
+    "Favorite": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفضلة"
+          }
+        }
+      }
+    },
+    "Favorites": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المفضلة"
+          }
+        }
+      }
+    },
+    "Favorites only": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المفضلة فقط"
+          }
+        }
+      }
+    },
+    "File URL": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رابط الملف"
           }
         }
       }
     },
     "Games": {
+      "extractionState": "manual",
       "localizations": {
         "ar": {
           "stringUnit": {
@@ -16569,62 +16992,735 @@
         }
       }
     },
-    "onboarding.welcome.title": {
+    "Group Number": {
+      "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Welcome to AppMaster"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "مرحباً بك في AppMaster"
+            "value": "رقم المجموعة"
           }
         }
       }
     },
-    "onboarding.welcome.description": {
+    "Home": {
+      "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your one-stop store for all your apps"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "مكان واحد لكل تطبيقاتك"
+            "value": "الرئيسية"
           }
         }
       }
     },
-    "onboarding.signing.title": {
+    "Inactive": {
+      "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Our updates are lightning fast"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تحديثاتنا أسرع من البرق"
+            "value": "غير نشط"
+          }
+        }
+      }
+    },
+    "Invalid verification URL": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رابط التحقق غير صالح"
+          }
+        }
+      }
+    },
+    "Language": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اللغة"
+          }
+        }
+      }
+    },
+    "Language Changed": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم تغيير اللغة"
+          }
+        }
+      }
+    },
+    "Languages": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اللغات"
+          }
+        }
+      }
+    },
+    "Less": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أقل"
+          }
+        }
+      }
+    },
+    "Load More": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تحميل المزيد"
+          }
+        }
+      }
+    },
+    "Loading...": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جاري التحميل..."
+          }
+        }
+      }
+    },
+    "Minimum iOS": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحد الأدنى من iOS"
+          }
+        }
+      }
+    },
+    "My Favorites": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفضلتي"
+          }
+        }
+      }
+    },
+    "My Info": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "معلوماتي"
+          }
+        }
+      }
+    },
+    "No Content": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يوجد محتوى"
+          }
+        }
+      }
+    },
+    "No Favorites": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا مفضلة"
+          }
+        }
+      }
+    },
+    "No Games": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد ألعاب"
+          }
+        }
+      }
+    },
+    "No User Data": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد بيانات مستخدم"
+          }
+        }
+      }
+    },
+    "No apps found in repository.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لم يتم العثور على تطبيقات في المستودع."
+          }
+        }
+      }
+    },
+    "No content available at the moment.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يوجد محتوى متاح في الوقت الحالي."
+          }
+        }
+      }
+    },
+    "No games found.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لم يتم العثور على ألعاب."
+          }
+        }
+      }
+    },
+    "Notification scope": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نطاق الإشعارات"
+          }
+        }
+      }
+    },
+    "Notifications": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الإشعارات"
+          }
+        }
+      }
+    },
+    "Notifications favorites customize hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يمكنك تخصيص إشعارات التطبيقات المفضلة من الإعدادات."
+          }
+        }
+      }
+    },
+    "Notifications for favorites count": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لديك %d تطبيق في المفضلة. ستُرسل الإشعارات لهذه التطبيقات فقط."
+          }
+        }
+      }
+    },
+    "Notifications scope footer all": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ستستلم إشعارات كل التطبيقات الجديدة والمحدّثة."
+          }
+        }
+      }
+    },
+    "Notifications scope footer favorites": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ستستلم إشعارات التطبيقات الجديدة أو المحدّثة التي في المفضلة فقط. باقي التطبيقات لن ترسل لك إشعارات."
+          }
+        }
+      }
+    },
+    "Notifications scope footer off": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لن تستلم أي إشعارات عن تطبيقات جديدة أو تحديثات."
+          }
+        }
+      }
+    },
+    "On Device": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "على الجهاز"
+          }
+        }
+      }
+    },
+    "On Server": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "على السيرفر"
+          }
+        }
+      }
+    },
+    "On Server:\nApplications will be signed directly on the server without downloading them to the device.\n\nOn Device:\nApplications will be signed internally and will be downloaded to the device.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "على السيرفر:\nسيتم توقيع التطبيقات مباشرة على السيرفر بدون تنزيلها على الجهاز.\n\nعلى الجهاز:\nسيتم توقيع التطبيقات داخلياً وسيتم تنزيلها على الجهاز."
+          }
+        }
+      }
+    },
+    "Order": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاتجاه"
+          }
+        }
+      }
+    },
+    "Phone Number": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رقم الهاتف"
+          }
+        }
+      }
+    },
+    "Please complete the onboarding process to see your information.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يرجى إكمال عملية التسجيل لرؤية معلوماتك."
+          }
+        }
+      }
+    },
+    "Please restart the app for the language change to take effect.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يرجى إعادة تشغيل التطبيق لتطبيق تغيير اللغة."
+          }
+        }
+      }
+    },
+    "Recently Updated": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "محدث مؤخراً"
+          }
+        }
+      }
+    },
+    "Remove Provisioning File After Signing": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إزالة ملف Provisioning بعد التوقيع"
+          }
+        }
+      }
+    },
+    "Remove the provisioning file after signing": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إزالة ملف provisioning بعد التوقيع"
+          }
+        }
+      }
+    },
+    "Repeat": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تكرار"
+          }
+        }
+      }
+    },
+    "Repository Apps": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تطبيقات المستودع"
+          }
+        }
+      }
+    },
+    "Select Copy Number": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اختر رقم النسخة"
+          }
+        }
+      }
+    },
+    "Select a copy number to append to the bundle ID": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اختر رقم نسخة لإضافته إلى Bundle ID"
+          }
+        }
+      }
+    },
+    "Service Expired": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انتهت صلاحية الخدمة"
+          }
+        }
+      }
+    },
+    "Signing Complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اكتمل التوقيع"
+          }
+        }
+      }
+    },
+    "Sorry, you are not allowed to access the app. Your subscription is not active.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عذراً، غير مسموح لك بالدخول إلى التطبيق. اشتراكك غير نشط."
+          }
+        }
+      }
+    },
+    "Sorry, you cannot access the app at this time because the service subscription has expired. Please contact support to renew your subscription.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عذراً، لا يمكنك الوصول إلى التطبيق في الوقت الحالي بسبب انتهاء صلاحية اشتراك الخدمة. يرجى التواصل مع الدعم لتجديد اشتراكك."
+          }
+        }
+      }
+    },
+    "Sorry, you cannot use the app at this time. Your subscription is not active.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عذراً، لا يمكنك استخدام التطبيق في الوقت الحالي. اشتراكك غير نشط."
+          }
+        }
+      }
+    },
+    "Sort by": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الفرز حسب"
+          }
+        }
+      }
+    },
+    "Status": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحالة"
+          }
+        }
+      }
+    },
+    "Subscription Expired": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انتهى الاشتراك"
+          }
+        }
+      }
+    },
+    "Technical Details": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التفاصيل التقنية"
+          }
+        }
+      }
+    },
+    "The application has detected that your service subscription has expired. To continue using this app, please renew your subscription.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اكتشف التطبيق أن اشتراك الخدمة الخاص بك قد انتهى. للمتابعة في استخدام التطبيق، يرجى تجديد اشتراكك."
+          }
+        }
+      }
+    },
+    "Theme Color": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لون المظهر"
+          }
+        }
+      }
+    },
+    "UDID": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "معرف الجهاز"
+          }
+        }
+      }
+    },
+    "Update Date": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تاريخ التحديث"
+          }
+        }
+      }
+    },
+    "Used Date": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تاريخ الاستخدام"
+          }
+        }
+      }
+    },
+    "User Information": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "معلومات المستخدم"
+          }
+        }
+      }
+    },
+    "User account is not active": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حساب المستخدم غير نشط"
+          }
+        }
+      }
+    },
+    "Verification successful, but certificate download failed. You can add certificates manually.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم التحقق بنجاح، لكن فشل تنزيل الشهادة. يمكنك إضافة الشهادات يدوياً."
+          }
+        }
+      }
+    },
+    "View all favorites": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عرض كل المفضلة"
+          }
+        }
+      }
+    },
+    "Wait for subscription renewal": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انتظر تجديد الاشتراك"
+          }
+        }
+      }
+    },
+    "Welcome to %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحباً بك في %@"
+          }
+        }
+      }
+    },
+    "You can modify the app name and Bundle ID as you want": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يمكنك تعديل اسم التطبيق و Bundle ID حسب ما تريد"
+          }
+        }
+      }
+    },
+    "iOSGods": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOSGods"
+          }
+        }
+      }
+    },
+    "onboarding.button.next": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التالي"
+          }
+        }
+      }
+    },
+    "onboarding.button.skip": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تخطي"
+          }
+        }
+      }
+    },
+    "onboarding.button.verify": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تحقق"
           }
         }
       }
     },
     "onboarding.signing.description": {
+      "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "With continuous 24/7 technical support"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
@@ -16633,30 +17729,20 @@
         }
       }
     },
-    "onboarding.start.title": {
+    "onboarding.signing.title": {
+      "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "One last step to launch"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "خطوة أخيرة للانطلاق"
+            "value": "تحديثاتنا اسرع من البرق"
           }
         }
       }
     },
     "onboarding.start.description": {
+      "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quick setup and we're ready"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
@@ -16665,12 +17751,35 @@
         }
       }
     },
-    "Welcome to %@": {
+    "onboarding.start.title": {
+      "extractionState": "manual",
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "مرحباً بك في %@"
+            "value": "خطوة أخيرة للانطلاق"
+          }
+        }
+      }
+    },
+    "onboarding.welcome.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مكان واحد لكل تطبيقاتك"
+          }
+        }
+      }
+    },
+    "onboarding.welcome.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحباً بك في Feather"
           }
         }
       }
