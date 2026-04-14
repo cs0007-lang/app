@@ -19,22 +19,6 @@ jobs:
     - name: Select Xcode version
       run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
-    - name: Install Apple Certificate
-      env:
-        P12_BASE64: ${{ secrets.P12_BASE64 }}
-        P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
-        PROVISIONING_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE_BASE64 }}
-      run: |
-        echo "$P12_BASE64" | base64 --decode > certificate.p12
-        security create-keychain -p github-actions github-actions.keychain
-        security default-keychain -s github-actions.keychain
-        security unlock-keychain -p github-actions github-actions.keychain
-        security import certificate.p12 -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k github-actions.keychain
-        security set-key-partition-list -S apple-tool:,apple: -k github-actions github-actions.keychain
-
-        mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-        echo "$PROVISIONING_PROFILE_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/appmaster.mobileprovision
-
     - name: Build and Archive iOS App
       run: |
         xcodebuild clean archive \
@@ -43,26 +27,20 @@ jobs:
           -configuration Release \
           -archivePath build/AppMaster.xcarchive \
           -sdk iphoneos \
-          CODE_SIGN_STYLE="Manual" \
-          CODE_SIGN_IDENTITY="Apple Distribution: Your Name (XXXXXXXXXX)" \
-          PROVISIONING_PROFILE_SPECIFIER="AppMaster Provisioning Profile Name" \
-          DEVELOPMENT_TEAM="XXXXXXXXXX" \
-          PROVISIONING_PROFILE_UUID="YOUR_PROVISIONING_PROFILE_UUID" \
+          CODE_SIGNING_ALLOWED=NO \
+          CODE_SIGNING_REQUIRED=NO \
+          AD_HOC_CODE_SIGNING_ALLOWED=YES \
           ENABLE_BITCODE=NO
 
     - name: Export IPA
       run: |
-        xcodebuild -exportArchive \
-          -archivePath build/AppMaster.xcarchive \
-          -exportOptionsPlist Feather-2.7.0/exportOptions.plist \
-          -exportPath build/ipa
+        mkdir -p build/ipa/Payload
+        cp -r build/AppMaster.xcarchive/Products/Applications/*.app build/ipa/Payload/
+        cd build/ipa
+        zip -r AppMaster.ipa Payload/
 
     - name: Upload IPA as artifact
       uses: actions/upload-artifact@v4
       with:
         name: AppMaster-IPA
-        path: build/ipa/*.ipa
-
-    - name: Clean up keychain
-      if: always()
-      run: security delete-keychain github-actions.keychain || true
+        path: build/ipa/AppMaster.ipa
