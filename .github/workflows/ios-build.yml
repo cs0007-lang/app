@@ -31,6 +31,8 @@ jobs:
           -configuration Release \
           -archivePath build/AppMaster.xcarchive \
           -sdk iphoneos \
+          -skipPackagePluginValidation \
+          -skipMacroValidation \
           CODE_SIGNING_ALLOWED=NO \
           CODE_SIGNING_REQUIRED=NO \
           AD_HOC_CODE_SIGNING_ALLOWED=YES \
