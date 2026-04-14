@@ -19,10 +19,14 @@ jobs:
     - name: Select Xcode version
       run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
+    - name: Clone Feather
+      run: |
+        git clone --recurse-submodules https://github.com/khcrysalis/Feather.git Feather-2.7.0
+
     - name: Build and Archive iOS App
       run: |
         xcodebuild clean archive \
-          -workspace Feather-2.7.0/Feather.xcworkspace \
+          -project Feather-2.7.0/Feather.xcodeproj \
           -scheme Feather \
           -configuration Release \
           -archivePath build/AppMaster.xcarchive \
