@@ -24,6 +24,10 @@ jobs:
         git config --global lfs.enabled false
         git clone --recurse-submodules --branch v2.4.0 https://github.com/khcrysalis/Feather.git Feather-v2.4.0
 
+    - name: Show available schemes
+      run: |
+        xcodebuild -project Feather-v2.4.0/Feather.xcodeproj -list
+
     - name: Build and Archive iOS App
       run: |
         set -o pipefail
@@ -33,6 +37,7 @@ jobs:
           -configuration Release \
           -archivePath build/AppMaster.xcarchive \
           -sdk iphoneos \
+          -destination 'generic/platform=iOS' \
           -skipPackagePluginValidation \
           -skipMacroValidation \
           -skipPackageUpdates \
