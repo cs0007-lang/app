@@ -23,40 +23,16 @@ jobs:
       run: |
         git config --global lfs.enabled false
         git clone --recurse-submodules https://github.com/khcrysalis/Feather.git Feather-2.7.0
-        chmod -R 777 Feather-2.7.0
 
-    - name: Fix IDevice Library
+    - name: Show Feather Structure
       run: |
-        FRAMEWORK=$(find Feather-2.7.0 -name "IDevice.xcframework" | head -1)
-        echo "Found framework at: $FRAMEWORK"
-        TARGET_DIR="$FRAMEWORK/ios-arm64"
-        mkdir -p "$TARGET_DIR"
-        TARGET_LIB="$TARGET_DIR/libidevice_ffi.a"
-        cat > /tmp/dummy.c << 'EOF'
-        void idevice_init(void) {}
-        void idevice_free(void* a) {}
-        void idevice_new(void* a, void** b) {}
-        void idevice_connect(void* a, int b, void** c) {}
-        void idevice_disconnect(void* a) {}
-        void afc_client_connect(void* a, void** b) {}
-        void afc_client_free(void* a) {}
-        void afc_file_close(void* a, int b) {}
-        void afc_file_open(void* a, void* b, int c, void** d) {}
-        void afc_file_write(void* a, int b, void* c, int d, void** e) {}
-        void afc_make_directory(void* a, void* b) {}
-        void installation_proxy_client_free(void* a) {}
-        void installation_proxy_connect(void* a, void** b) {}
-        void installation_proxy_get_apps(void* a, void* b, void* c, void** d) {}
-        void lockdownd_client_new_with_handshake(void* a, void** b, void* c) {}
-        void lockdownd_client_free(void* a) {}
-        void lockdownd_start_service(void* a, void* b, void** c) {}
-        void lockdownd_get_value(void* a, void* b, void* c, void** d) {}
-        EOF
-        clang -target arm64-apple-ios16.0 \
-          -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
-          -c /tmp/dummy.c -o /tmp/dummy.o
-        ar rcs "$TARGET_LIB" /tmp/dummy.o
-        echo "Done: $TARGET_LIB"
+        echo "=== Root ==="
+        ls Feather-2.7.0/
+        echo "=== Submodules ==="
+        ls Feather-2.7.0/IDeviceKitten/ 2>/dev/null || echo "No IDeviceKitten"
+        echo "=== All frameworks ==="
+        find Feather-2.7.0 -name "*.xcframework" 2>/dev/null
+        find Feather-2.7.0 -name "*.a" 2>/dev/null
 
     - name: Build and Archive iOS App
       run: |
