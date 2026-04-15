@@ -26,6 +26,7 @@ jobs:
 
     - name: Build and Archive iOS App
       run: |
+        set -o pipefail  # ✅ FIX 1: يجعل الـ pipe يفشل إذا فشل xcodebuild
         xcodebuild clean archive \
           -project Feather-2.7.0/Feather.xcodeproj \
           -scheme Feather \
@@ -41,7 +42,23 @@ jobs:
           ARCHS=arm64 \
           ONLY_ACTIVE_ARCH=NO \
           ENABLE_BITCODE=NO \
-          2>&1 | tail -50
+          2>&1 | tee build.log | tail -100  # ✅ FIX 2: tee يحفظ الـ log كاملاً
+
+    - name: Upload build log on failure  # ✅ FIX 3: ارفع الـ log عند الفشل
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-log
+        path: build.log
+
+    - name: Verify archive exists  # ✅ FIX 4: تحقق من وجود الـ archive قبل المتابعة
+      run: |
+        if [ ! -d "build/AppMaster.xcarchive" ]; then
+          echo "❌ Archive not found! Build may have failed silently."
+          exit 1
+        fi
+        echo "✅ Archive found:"
+        ls -la build/AppMaster.xcarchive/Products/Applications/
 
     - name: Export IPA
       run: |
