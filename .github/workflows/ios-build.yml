@@ -22,13 +22,13 @@ jobs:
     - name: Clone Feather
       run: |
         git config --global lfs.enabled false
-        git clone --recurse-submodules --branch 2.0.3 https://github.com/khcrysalis/Feather.git Feather-2.0.3
+        git clone --recurse-submodules --branch v2.4.0 https://github.com/khcrysalis/Feather.git Feather-v2.4.0
 
     - name: Build and Archive iOS App
       run: |
         set -o pipefail
         xcodebuild clean archive \
-          -project Feather-2.0.3/Feather.xcodeproj \
+          -project Feather-v2.4.0/Feather.xcodeproj \
           -scheme Feather \
           -configuration Release \
           -archivePath build/AppMaster.xcarchive \
