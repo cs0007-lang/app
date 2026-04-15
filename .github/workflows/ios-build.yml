@@ -24,16 +24,6 @@ jobs:
         git config --global lfs.enabled false
         git clone --recurse-submodules https://github.com/khcrysalis/Feather.git Feather-2.7.0
 
-    - name: Show Feather Structure
-      run: |
-        echo "=== Root ==="
-        ls Feather-2.7.0/
-        echo "=== Submodules ==="
-        ls Feather-2.7.0/IDeviceKitten/ 2>/dev/null || echo "No IDeviceKitten"
-        echo "=== All frameworks ==="
-        find Feather-2.7.0 -name "*.xcframework" 2>/dev/null
-        find Feather-2.7.0 -name "*.a" 2>/dev/null
-
     - name: Build and Archive iOS App
       run: |
         xcodebuild clean archive \
@@ -44,12 +34,14 @@ jobs:
           -sdk iphoneos \
           -skipPackagePluginValidation \
           -skipMacroValidation \
+          -skipPackageUpdates \
           CODE_SIGNING_ALLOWED=NO \
           CODE_SIGNING_REQUIRED=NO \
           AD_HOC_CODE_SIGNING_ALLOWED=YES \
           ARCHS=arm64 \
           ONLY_ACTIVE_ARCH=NO \
-          ENABLE_BITCODE=NO
+          ENABLE_BITCODE=NO \
+          2>&1 | tail -50
 
     - name: Export IPA
       run: |
