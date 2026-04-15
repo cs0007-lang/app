@@ -24,10 +24,22 @@ jobs:
         git config --global lfs.enabled false
         git clone --recurse-submodules https://github.com/khcrysalis/Feather.git Feather-2.7.0
 
+    - name: Find IDevice Library Path
+      run: |
+        echo "=== IDeviceKitten contents ==="
+        find Feather-2.7.0 -name "*.a" | head -20
+        find Feather-2.7.0 -name "*.xcframework" | head -10
+        find Feather-2.7.0 -name "IDevice*" | head -10
+
     - name: Fix IDevice Library
       run: |
-        TARGET_LIB="Feather-2.7.0/IDeviceKitten/Frameworks/IDevice.xcframework/ios-arm64/libidevice_ffi.a"
-        rm -f "$TARGET_LIB"
+        TARGET_LIB=$(find Feather-2.7.0 -name "libidevice_ffi.a" | head -1)
+        if [ -z "$TARGET_LIB" ]; then
+          TARGET_DIR=$(find Feather-2.7.0 -name "IDevice.xcframework" | head -1)
+          mkdir -p "$TARGET_DIR/ios-arm64"
+          TARGET_LIB="$TARGET_DIR/ios-arm64/libidevice_ffi.a"
+        fi
+        echo "Target: $TARGET_LIB"
         cat > /tmp/dummy.c << 'EOF'
         void idevice_init(void) {}
         void idevice_free(void* a) {}
