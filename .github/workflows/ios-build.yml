@@ -22,13 +22,13 @@ jobs:
     - name: Clone Feather
       run: |
         git config --global lfs.enabled false
-        git clone --recurse-submodules https://github.com/khcrysalis/Feather.git Feather-2.7.0
+        git clone --recurse-submodules --branch 2.0.3 https://github.com/khcrysalis/Feather.git Feather-2.0.3
 
     - name: Build and Archive iOS App
       run: |
-        set -o pipefail  # ✅ FIX 1: يجعل الـ pipe يفشل إذا فشل xcodebuild
+        set -o pipefail
         xcodebuild clean archive \
-          -project Feather-2.7.0/Feather.xcodeproj \
+          -project Feather-2.0.3/Feather.xcodeproj \
           -scheme Feather \
           -configuration Release \
           -archivePath build/AppMaster.xcarchive \
@@ -42,19 +42,19 @@ jobs:
           ARCHS=arm64 \
           ONLY_ACTIVE_ARCH=NO \
           ENABLE_BITCODE=NO \
-          2>&1 | tee build.log | tail -100  # ✅ FIX 2: tee يحفظ الـ log كاملاً
+          2>&1 | tee build.log | tail -100
 
-    - name: Upload build log on failure  # ✅ FIX 3: ارفع الـ log عند الفشل
+    - name: Upload build log on failure
       if: failure()
       uses: actions/upload-artifact@v4
       with:
         name: build-log
         path: build.log
 
-    - name: Verify archive exists  # ✅ FIX 4: تحقق من وجود الـ archive قبل المتابعة
+    - name: Verify archive exists
       run: |
         if [ ! -d "build/AppMaster.xcarchive" ]; then
-          echo "❌ Archive not found! Build may have failed silently."
+          echo "❌ Archive not found!"
           exit 1
         fi
         echo "✅ Archive found:"
